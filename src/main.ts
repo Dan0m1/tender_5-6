@@ -19,7 +19,6 @@ async function bootstrap() {
       'Api built with nest.js according to labs 5 and 6 requirements',
     )
     .setVersion('0.0.1')
-    .addTag('api')
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);

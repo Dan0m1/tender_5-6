@@ -4,7 +4,7 @@ import { ApiPropertyOptional } from '@nestjs/swagger';
 export class QueryAllDto {
   @ApiPropertyOptional({
     description: 'Page number to query.',
-    default: 1,
+    default: 0,
   })
   @IsOptional()
   @IsNumberString()

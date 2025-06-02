@@ -6,6 +6,7 @@ import { ApiProperty } from '@nestjs/swagger';
 export class TenderWithOffersResponse extends TenderResponse {
   @ApiProperty({
     type: OfferResponse,
+    description: 'List of offers related to this tender.',
     isArray: true,
   })
   @AutoMap(() => OfferResponse)

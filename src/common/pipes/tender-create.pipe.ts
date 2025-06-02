@@ -12,9 +12,7 @@ export class TenderCreatePipe
     if (!value.currentPrice) {
       value.currentPrice = value.startingPrice;
     }
-    if (value.authorId) {
-      await this.userByIdPipe.transform(value.authorId);
-    }
+    await this.userByIdPipe.transform(value.authorId);
     return value;
   }
 }
