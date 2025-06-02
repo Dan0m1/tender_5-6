@@ -28,7 +28,7 @@ export class DatabaseUtils {
     const pages = Math.ceil(result.length / pageSize);
     const totalPages = Math.ceil(totalAmount / pageSize);
 
-    if (!pageSize) {
+    if (!pageSize || pages === 1) {
       return {
         data: result,
         meta: {
