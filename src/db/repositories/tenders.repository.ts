@@ -122,7 +122,7 @@ export class TendersRepository {
   private buildFindManyArgs(params: QueryAllTendersDto): {
     where?: Prisma.TenderWhereInput;
   } {
-    const {
+    let {
       search,
       sort,
       order = 'asc',
@@ -132,8 +132,11 @@ export class TendersRepository {
       authorId,
       winnerId,
       page = 1,
-      pageSize,
+      pageSize = 10,
     } = params;
+
+    page = +page;
+    pageSize = +pageSize;
 
     let args: any = {
       where: {},
@@ -149,16 +152,19 @@ export class TendersRepository {
       args.where.status = status;
     }
     if (minPrice) {
-      args.where.startingPrice = { gte: minPrice };
+      args.where.startingPrice = { gte: +minPrice };
     }
     if (maxPrice) {
-      args.where.startingPrice = { ...args.where.startingPrice, lte: maxPrice };
+      args.where.startingPrice = {
+        ...args.where.startingPrice,
+        lte: +maxPrice,
+      };
     }
     if (authorId) {
-      args.where.authorId = authorId;
+      args.where.authorId = +authorId;
     }
     if (winnerId) {
-      args.where.winnerId = winnerId;
+      args.where.winnerId = +winnerId;
     }
 
     if (sort) {
