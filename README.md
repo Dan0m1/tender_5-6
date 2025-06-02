@@ -1,5 +1,5 @@
 # Lab 5-6
-Built with NestJs and Prisma.
+Raw Tender API built with NestJS and Prisma (PostgreSQL).
 
 # App setup
 
