@@ -6,6 +6,7 @@ import { DbOffer } from '../entities/offer.entity';
 import { CreateOfferDto } from '../../common/requests/create-offer.dto';
 import { UpdateOfferDto } from '../../common/requests/update-offer.dto';
 import { QueryAllOffersDto } from '../../common/requests/query-all-offers.dto';
+import {OfferWhereInput} from "../../generated/prisma/models/Offer";
 
 @Injectable()
 export class OffersRepository {
@@ -90,64 +91,17 @@ export class OffersRepository {
     });
   }
 
-  async findOneById(id: number) {
-    return this.prisma.offer.findUnique({
-      where: { id },
+  async findOne(where: OfferWhereInput): Promise<DbOffer | null> {
+    return this.prisma.offer.findFirst({
+      where,
       include: {
-        tender: {
-          select: {
-            id: true,
-            title: true,
-            startingPrice: true,
-            currentPrice: true,
-            status: true,
-          },
-        },
+        tender: true,
         user: {
           select: {
             id: true,
             username: true,
           },
         },
-      },
-    });
-  }
-
-  async findByTenderId(tenderId: number) {
-    return this.prisma.offer.findMany({
-      where: {
-        tenderId: tenderId,
-      },
-      include: {
-        user: {
-          select: {
-            id: true,
-            username: true,
-          },
-        },
-      },
-      orderBy: {
-        amount: 'asc',
-      },
-    });
-  }
-
-  async findByUserId(userId: number) {
-    return this.prisma.offer.findMany({
-      where: {
-        userId: userId,
-      },
-      include: {
-        tender: {
-          select: {
-            id: true,
-            title: true,
-            status: true,
-          },
-        },
-      },
-      orderBy: {
-        createdAt: 'desc',
       },
     });
   }
