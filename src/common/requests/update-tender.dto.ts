@@ -11,14 +11,14 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class UpdateTenderDto {
   @ApiProperty({
-    description: 'Title of tender to create.',
+    description: 'Title of tender to update.',
   })
   @IsOptional()
   @IsString()
   title?: string;
 
   @ApiPropertyOptional({
-    description: 'Description of tender to create.',
+    description: 'Description of tender to update.',
     default: null,
   })
   @IsOptional()
@@ -26,7 +26,7 @@ export class UpdateTenderDto {
   description?: string;
 
   @ApiProperty({
-    description: 'Starting price of tender to create.',
+    description: 'Starting price of tender to update.',
   })
   @IsOptional()
   @IsNumber()
@@ -34,7 +34,7 @@ export class UpdateTenderDto {
   startingPrice?: number;
 
   @ApiPropertyOptional({
-    description: 'Current price of tender to create.',
+    description: 'Current price of tender to update.',
     default: null,
   })
   @IsOptional()
@@ -43,7 +43,7 @@ export class UpdateTenderDto {
   currentPrice?: number;
 
   @ApiPropertyOptional({
-    description: 'Start Date of tender to create.',
+    description: 'Start Date of tender to update.',
     default: null,
   })
   @IsOptional()
@@ -51,7 +51,7 @@ export class UpdateTenderDto {
   startDate?: Date;
 
   @ApiPropertyOptional({
-    description: 'End Date of tender to create.',
+    description: 'End Date of tender to update.',
     default: null,
   })
   @IsOptional()
@@ -59,7 +59,7 @@ export class UpdateTenderDto {
   endDate?: Date;
 
   @ApiPropertyOptional({
-    description: 'Status of tender to query.',
+    description: 'Status of tender to update.',
     enum: TenderStatus,
     enumName: 'TenderStatus',
   })

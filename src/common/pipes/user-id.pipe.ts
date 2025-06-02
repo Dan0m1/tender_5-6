@@ -7,7 +7,9 @@ export class UserByIdPipe implements PipeTransform<number, Promise<number>> {
   constructor(private usersRepository: UsersRepository) {}
 
   async transform(id: number) {
-    const user = await this.usersRepository.findOneById(id);
+    const user = await this.usersRepository.findOne({
+      id,
+    });
     if (!user) {
       throw new InvalidIdException('User');
     }

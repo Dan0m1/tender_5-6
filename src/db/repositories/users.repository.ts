@@ -6,6 +6,7 @@ import { DbUser } from 'src/db/entities/user.entity';
 import { CreateUserDto } from '../../common/requests/create-user.dto';
 import { UpdateUserDto } from '../../common/requests/update-user.dto';
 import { QueryAllUsersDto } from '../../common/requests/query-all-users.dto';
+import {UserWhereInput} from "../../generated/prisma/models/User";
 
 @Injectable()
 export class UsersRepository {
@@ -44,38 +45,20 @@ export class UsersRepository {
         createdTenders: true,
         wonTenders: true,
         offers: true,
-        _count: {
-          select: { offers: true },
-        },
       },
       omit: {
         password: true,
       },
     });
-
     return DatabaseUtils.convertPaginationData(users, total, {
       page,
       pageSize,
     });
   }
 
-  async findOneById(id: number) {
-    return this.prisma.user.findUnique({
-      where: { id },
-      include: {
-        createdTenders: true,
-        wonTenders: true,
-        offers: true,
-      },
-      omit: {
-        password: true,
-      },
-    });
-  }
-
-  async findByUsername(username: string) {
-    return this.prisma.user.findUnique({
-      where: { username },
+  async findOne(where: UserWhereInput): Promise<DbUser | null> {
+    return this.prisma.user.findFirst({
+      where,
       include: {
         createdTenders: true,
         wonTenders: true,
