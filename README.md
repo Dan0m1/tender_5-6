@@ -61,9 +61,12 @@ Raw Tender API built with NestJS and Prisma (PostgreSQL).
    You can either remove .example ending of [.env.example](.env.example) and use it as a sample or make an own new one.
    
 
-2. **Build and Start Services**
+3. **Build and Start Services**
 
    ```sh
    docker compose up --build
    ```
+4. **Access the Application**
 
+   Now the app should be accessible at [http://localhost:3000](http://localhost:3000). <br>
+   You can also take a look at OpenApi document of API: [http://localhost:3000/api#/](http://localhost:3000/api#/).
