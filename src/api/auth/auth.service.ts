@@ -57,7 +57,8 @@ export class AuthService {
       ...user,
       password: await this.hashPassword(user.password),
     };
-    return this.usersRepository.create(createDto);
+    const newUser = await this.usersRepository.create(createDto);
+    return this.login(newUser);
   }
 
   async hashPassword(password: string) {
