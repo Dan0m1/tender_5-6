@@ -9,11 +9,11 @@ export class SecurityConfigService {
     return this.configService.get<string>('security.secret')!;
   }
 
-  get jwtTtl(): number {
-    return this.configService.get<number>('security.jwtTtl')!;
+  get jwtTtl(): string {
+    return this.configService.get<string>('security.jwt.ttl')!;
   }
 
-  get jwtRefreshTtl(): number {
-    return this.configService.get<number>('security.jwtRefreshTtl')!;
+  get jwtRefreshTtl(): string {
+    return this.configService.get<string>('security.jwt.refreshTtl')!;
   }
 }

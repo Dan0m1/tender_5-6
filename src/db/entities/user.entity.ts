@@ -3,6 +3,11 @@ import { UserRole } from '../../generated/prisma';
 import { DbTender } from './tender.entity';
 import { DbOffer } from './offer.entity';
 
+export class UserEntity {
+  id: number;
+  username: string;
+}
+
 export class DbUser {
   @AutoMap()
   id: number;
