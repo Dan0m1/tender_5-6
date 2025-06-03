@@ -6,7 +6,7 @@ import { DbUser } from 'src/db/entities/user.entity';
 import { CreateUserDto } from '../../common/requests/create-user.dto';
 import { UpdateUserDto } from '../../common/requests/update-user.dto';
 import { QueryAllUsersDto } from '../../common/requests/query-all-users.dto';
-import {UserWhereInput} from "../../generated/prisma/models/User";
+import { UserWhereInput } from '../../generated/prisma/models/User';
 
 @Injectable()
 export class UsersRepository {
@@ -66,6 +66,21 @@ export class UsersRepository {
       },
       omit: {
         password: true,
+      },
+    });
+  }
+
+  async findByUsernameWithPassword(username: string): Promise<DbUser | null> {
+    return this.prisma.user.findFirst({
+      where: {
+        username,
+      },
+      select: {
+        id: true,
+        username: true,
+        password: true,
+        email: true,
+        role: true,
       },
     });
   }
