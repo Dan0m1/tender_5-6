@@ -14,6 +14,7 @@ import { InjectMapper } from '@automapper/nestjs';
 import { Mapper } from '@automapper/core';
 import {
   ApiBadRequestResponse,
+  ApiBearerAuth,
   ApiCreatedResponse,
   ApiOkResponse,
   ApiOperation,
@@ -51,6 +52,7 @@ export class UsersController {
       
     `,
   })
+  @ApiBearerAuth()
   @UseGuards(JwtGuard)
   async create(
     @Body(UserCreatePipe) createUserDto: CreateUserDto,
@@ -76,6 +78,7 @@ export class UsersController {
     InvalidBodyException:
     `,
   })
+  @ApiBearerAuth()
   @UseGuards(JwtGuard)
   async getAll(
     @Query() query: QueryAllUsersDto,
@@ -113,6 +116,7 @@ export class UsersController {
       "userId" - User with such id was not found
     `,
   })
+  @ApiBearerAuth()
   @UseGuards(JwtGuard)
   async getById(
     @Param('userId', UserByIdPipe) userId: number,
@@ -140,6 +144,7 @@ export class UsersController {
       "userId" - User with such id was not found
     `,
   })
+  @ApiBearerAuth()
   @UseGuards(JwtGuard)
   @Patch('/:userId')
   async update(
@@ -173,6 +178,7 @@ export class UsersController {
       "userId" - User with such id was not found
     `,
   })
+  @ApiBearerAuth()
   @UseGuards(JwtGuard)
   // Do not use to deactivate user
   @Delete('/:userId')
